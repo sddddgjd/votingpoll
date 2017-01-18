@@ -1,0 +1,21 @@
+{
+  "name": "votingpoll",
+  "version": "0.0.0",
+  "main": "server.js",
+  "repository": "",
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "body-parser": "~1.0.0",
+    "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.0.0",
+    "ejs": "^2.5.5",
+    "express": "~4.0.0",
+    "express-session": "~1.0.0",
+    "method-override": "~1.0.0",
+    "mongodb": "^2.2.21",
+    "mongoose": "~4.4",
+    "morgan": "~1.0.0",
+    "passport": "~0.1.17",
+    "passport-local": "~0.1.6"
+  }
+}
