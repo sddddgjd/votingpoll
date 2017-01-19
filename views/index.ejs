@@ -2,17 +2,33 @@
 <html>
     <head>
         <title>Voting polls</title>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+        <!-- load bootstrap css -->
     </head>
     <body>
         <div class="container">
+            <nav class="navbar navbar-inverse">
+              <ul class = "nav navbar-nav navbar-right">
+                  <li><a href="/">Home</a></li>
+                  
+                  <!-- present options for user if logged in / signup/login if there is no user-->
+                  <% if(user) { %>
+                  
+                      <li><a href="/new">New Poll</a></li>
+                      <li><a href="/my">My Polls</a></li>
+                      <li><a href ="/logout">Logout</a></li>
+                      
+                  <% } else{ %>  
+                  
+                      <li><a href="/login">Login</a></li>
+                      <li><a href="/signup">Signup</a></li>
+                      
+                  <% } %>
+              </ul>
+            </nav>
             <div class="text-center">
-                <h1><span class="fa fa-lock"></span> Node Authentication</h1>
-
-                    <p>Login or Register with:</p>
-
-                    <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-                    <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+                <h1> Current polls</h1>
+                <p>Feel free to vote on one of these polls, or create your own!</p>
             </div>
         </div>
     </body>

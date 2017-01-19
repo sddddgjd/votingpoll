@@ -26,7 +26,14 @@ app.use(morgan('dev')); // log requests
 app.use(cookieParser()); // read cookies
 app.use(bodyParser()); // get html forms
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
+/**bodyParser.json(options)
+ * Parses the text as JSON and exposes the resulting object on req.body.
+ */
+app.use(bodyParser.json());
 // passport setup
 app.use(session({ secret: 'notsosecret' })); // session secret
 app.use(passport.initialize());

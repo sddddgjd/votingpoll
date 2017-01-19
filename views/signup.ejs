@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Signup</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 </head>
 <body>
@@ -11,11 +11,11 @@
 
     <h1><span class="fa fa-sign-in"></span> Signup</h1>
 
-    <!-- show flash messages -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
 
+    <% if(message.length) { %> 
+        <div class="alert alert-danger"> <%= message %> </div>
+    <% } %>
+    
     <!-- signup form -->
     <form action="/signup" method="post">
         <div class="form-group">

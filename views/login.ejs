@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Login</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
 </head>
 <body>
@@ -10,11 +10,12 @@
 <div class="col-sm-6 col-sm-offset-3">
 
     <h1><span class="fa fa-sign-in"></span> Login</h1>
-    
-    <!-- show flash messages -- >
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
+
+    <% if(message.length) { %> 
+        <div class="alert alert-danger"> <%= message %> </div>
     <% } %>
+
+
     
     <!-- login form -->
     <form action="/login" method="post">
