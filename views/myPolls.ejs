@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Your polls</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+        <!-- load bootstrap css -->
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="navbar-header">
+			        <a class="navbar-brand" href="/">VotingPolls</a>
+			    </div>
+              <ul class = "nav navbar-nav navbar-right">
+                  <li><a href="/">Home</a></li>
+                      <li><a href="/new">New Poll</a></li>
+                      <li><a href="/myPolls">My Polls</a></li>
+                      <li><a href ="/logout">Logout</a></li>
+              </ul>
+            </nav>
+            <div class="text-center">
+                <h1> Your polls: </h1>
+                <% polls.forEach(function(poll){ %>
+                    <div id="poll"> 
+                        <a href="/poll/<%=poll._id%>"> <%=poll.name%> </a> 
+                        <a href="/delete/<%=poll._id%>" class="glyphicon glyphicon-remove"></a>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </body>
+</html>
