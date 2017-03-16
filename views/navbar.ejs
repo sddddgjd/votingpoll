@@ -1,0 +1,13 @@
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/"><i class="fa fa-bar-chart fa-lg" aria-hidden="true"></i></a>
+    </div>
+    <ul class = "nav navbar-nav navbar-right" ng-controller="user" ng-init="isLogged()">
+        <li><a href="/">Home</a></li>
+        <li ng-show="logged" ng-controller="AppCtrl" id="popupContainer" ng-cloak=""><a href="#" ng-show="logged" ng-click="showAdvanced($event)">New Poll</a></li>
+        <li><a href="/myPolls" ng-show="logged">My Polls</a></li>
+        <li><a href ="/logout" ng-show="logged">Logout</a></li>
+        <li><a href="/login" ng-show="!logged">Login</a></li>
+        <li><a href="/signup" ng-show="!logged">Signup</a></li>
+    </ul>
+</nav>

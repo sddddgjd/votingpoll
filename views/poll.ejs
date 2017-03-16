@@ -1,56 +1,62 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Poll</title>
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-		<!-- load bootstrap css -->
-	</head>
-	<body>
-		<div class="container">
-			<nav class="navbar navbar-inverse">
-			    <div class="navbar-header">
-			        <a class="navbar-brand" href="/">VotingPolls</a>
-			    </div>
-				<ul class = "nav navbar-nav navbar-right">
-					<li><a href="/">Home</a></li>
-					<!-- present options for user if logged in / signup/login if there is no user-->
-					<% if(user) { %>
-					<li><a href="/new">New Poll</a></li>
-					<li><a href="/myPolls">My Polls</a></li>
-					<li><a href ="/logout">Logout</a></li>
-					<% } else{ %>  
-					<li><a href="/login">Login</a></li>
-					<li><a href="/signup">Signup</a></li>
-					<% } %>
-				</ul>
-			</nav>
-			<% if(message.length) { %> 
-                <div class="alert alert-danger"> <%= message %> </div>
-            <% } %>
-			<div class="container">
-				<h2>Poll: <%=poll.name%></h2>
-				<% var cur = 0 %>
-				<% poll.options.forEach(function(option){%>
-				    <strong><%=option.option%>: <%=option.votes%> votes</strong>
-				    <div class="progress">
-				        <div class="progress-bar <%=colors[cur%4]%>" role="progressbar" style="width:<%=option.perc%>%"></div>
-				        <% cur ++ %>
-				    </div>
-				<%});%>
-				<form action="/poll/<%=poll._id%>" method="post">
-				    <div class="form-group">
-                        <label for="sel">Cast your vote:</label>
-                         <select class="form-control" id="sel" name="sel">
-                             <% poll.options.forEach(function(option){%>
-                                 <option name=<%=option.option%> value="<%=option.option%>"> <%=option.option%> </option>
-                             <%});%>
-                          </select>
-                          <label for="custom">Or add a new option:</label>
-                          <input type="text" name="custom"></input>
-                        </div>
-					<button type="submit" class="btn btn-success">Vote</button>
-				</form>
-			</div>
-		</div>
-	</body>
+<html ng-app="myApp">
+    <head>
+        <title>Poll</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+        <!-- angular libraries -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <link rel="stylesheet" href="../css/stylesheet.css">
+        <!-- Angular Material Library -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
+        <script src="../core.js"></script>
+        <ng-include src="'../header.ejs'"></ng-include>
+    </head>
+    <body>
+        <ng-include src="'../navbar.ejs'" ng-cloak></ng-include>
+        <% if(message.length) { %> 
+        <div class="alert alert-danger"> <%= message %> </div>
+        <% } %>
+        <div id="pollContainer" ng-cloak>
+            <div id="chartWrapper" class="col-sm-6 col-xs-12">
+                <canvas id="myChart"></canvas>
+            </div>
+            <form action="/poll/<%=poll._id%>" method="post" class="col-sm-6 col-xs-12">
+                <h1> <%=poll.name%></h1><br>
+                <div class="form-group">
+                    <label for="sel">Cast your vote:</label>
+                    <select class="form-control" id="sel" name="sel">
+                        <% poll.options.forEach(function(option){%>
+                        <option name=<%=option.option%> value="<%=option.option%>"> <%=option.option%> </option>
+                        <%});%>
+                    </select>
+                    <br>
+                    <label for="custom">Or add a new option:</label>
+                    <input type="text" name="custom"></input>
+                </div>
+                <button type="submit" class="btn btn-success">Vote</button>
+            </form>
+        </div>
+    </body>
 </html>
+<script ng-cloak>
+var ctx = document.getElementById("myChart");
+<%var cur =0 %>
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: [<% poll.options.forEach(function(option){%>"<%=option.option%>"<%=","%><%});%>],
+        datasets: [{
+            data: [<% poll.options.forEach(function(option){%>"<%=option.votes%>"<%=","%><%});%>],
+            backgroundColor: [<% poll.options.forEach(function(option){%>"<%=colors[cur%9]%>"<%=","%><% cur ++ %><%});%>
+            <%cur = 0%>],
+            hoverBackgroundColor: [<% poll.options.forEach(function(option){%>"<%=colors[cur%9]%>"<%=","%><% cur ++ %><%});%>
+            ]
+        }]
+    }
+});
+</script>

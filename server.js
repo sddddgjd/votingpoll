@@ -20,7 +20,9 @@ require('./config/passport')(passport); // pass passport for configuration
 //set up views
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/views'));
 
+app.use(express.static(__dirname + '/views/css'));
 // set up our express application
 app.use(morgan('dev')); // log requests
 app.use(cookieParser()); // read cookies

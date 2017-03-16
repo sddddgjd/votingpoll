@@ -1,0 +1,65 @@
+p, h1, h2, h3, h4, li, a, label{
+	font-family: 'Cutive', serif;
+}
+html, body{
+	background-color:white;
+}
+#mainArea{
+	margin-top:50px;
+	text-align:center;
+}
+
+#mainArea h1{
+	font-size:50px;
+	letter-spacing: 4px;
+}
+#mainArea h2{
+	font-size:28px;
+	margin-top:25px;
+}
+#mainArea p{
+	font-size:16px;
+	margin-top:28px;
+	margin-bottom:50px;
+}
+.poll{
+	padding-left:10%;
+	padding-right:10%;
+}
+.poll a{
+	text-decoration: none;
+	color:black;
+}
+.poll:hover{
+	font-weight:700;
+}
+#new{
+	width:500px;
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:10px;
+	padding-bottom:30px;
+}
+.glyphicon-remove{
+	float:right;
+	color:red !important;
+	font-size:22px;
+}
+#new form{
+	width:90%;
+	margin-left:5%;
+	margin-right:5%;
+}
+#new label{
+	margin-top:30px;
+}
+#new button{
+	margin-top:20px;
+}
+#pollContainer{
+	padding-left:10%;
+	padding-right:10%;
+}
+#chartWrapper{
+	padding-right:5%;
+}

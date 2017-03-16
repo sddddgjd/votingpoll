@@ -1,30 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
     <head>
-        <title>Your polls</title>
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-        <!-- load bootstrap css -->
+        <title>Voting polls</title>
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+        <!-- angular libraries -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <link rel="stylesheet" href="css/stylesheet.css">
+        <!-- Angular Material Library -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+        <script src="http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js"></script>
+        <script src="core.js"></script>
+        <ng-include src="'header.ejs'"></ng-include>
     </head>
     <body>
-        <div class="container">
-            <nav class="navbar navbar-inverse">
-                <div class="navbar-header">
-			        <a class="navbar-brand" href="/">VotingPolls</a>
-			    </div>
-              <ul class = "nav navbar-nav navbar-right">
-                  <li><a href="/">Home</a></li>
-                      <li><a href="/new">New Poll</a></li>
-                      <li><a href="/myPolls">My Polls</a></li>
-                      <li><a href ="/logout">Logout</a></li>
-              </ul>
-            </nav>
-            <div class="text-center">
-                <h1> Your polls: </h1>
+        <ng-include src="'navbar.ejs'" ng-cloak></ng-include>
+        <div id="mainArea" ng-cloak>
+            <h1> MY POLLS </h1>
+            <p> Manage your existing polls </p>
+            <div>
                 <% polls.forEach(function(poll){ %>
-                    <div id="poll"> 
-                        <a href="/poll/<%=poll._id%>"> <%=poll.name%> </a> 
-                        <a href="/delete/<%=poll._id%>" class="glyphicon glyphicon-remove"></a>
-                    </div>
+                <div class="poll col-md-6 col-sm-12">
+                    <a href="/poll/<%=poll._id%>"> <%=poll.name%> </a>
+                    <a href="/delete/<%=poll._id%>" class="glyphicon glyphicon-remove"></a>
+                    <hr>
+                </div>
                 <% }) %>
             </div>
         </div>

@@ -1,53 +1,11 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>New Poll</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <!-- load bootstrap css -->
-</head>
-
-<body>
-    <div class="container">
-        <nav class="navbar navbar-inverse">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">VotingPolls</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Home</a>
-                </li>
-
-                <!-- present options for user if logged in / signup/login if there is no user-->
-                <% if(user) { %>
-
-                    <li><a href="/new">New Poll</a>
-                    </li>
-                    <li><a href="/myPolls">My Polls</a>
-                    </li>
-                    <li><a href="/logout">Logout</a>
-                    </li>
-
-                    <% } else{ %>
-
-                        <li><a href="/login">Login</a>
-                        </li>
-                        <li><a href="/signup">Signup</a>
-                        </li>
-
-                        <% } %>
-            </ul>
-        </nav>
-        <h1>Create a new poll</h1>
-        <form action="/new" method="post">
-            <div class="form-group">
-                <label>Name: </label>
-                <input type="text" class="form-control" name="name">
-                <label>Options: </label>
-                <textarea class="form-control" rows="4" cols="50" name="options">Place your options on different rows.
-                    < -- delete me</textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-lg">Submit form</button>
-        </form>
-    </div>
-</body>
+<div id="new">
+    <form action="/new" method="post">
+        <div class="form-group">
+            <label>Name: </label>
+            <input type="text" class="form-control" name="name">
+            <label>Options: </label>
+            <textarea class="form-control" rows="4" cols="50" name="options" placeholder="Place your options on different rows."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Submit poll !</button>
+    </form>
+</div>

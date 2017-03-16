@@ -30,15 +30,6 @@ module.exports = function(app, passport) {
     app.post('/signup', passport.authenticate('local-signup', { successRedirect: '/',
                                                             failureRedirect: '/signup',
                                                                failureFlash: true}));
-    //new poll
-    app.get('/new', function(req, res){
-        //redirect if there is no logged in user
-       if(!req.user){
-            req.flash('loginMessage', 'Log in to create a new poll!');
-            res.redirect('/login');
-        }
-       res.render('new.ejs', {user:req.user}); 
-    });
     
     //process poll form
     app.post('/new', function(req,res){
@@ -68,7 +59,7 @@ module.exports = function(app, passport) {
        Poll.findById(req.params.id, function(err, poll){
            if(err)
              throw err;
-            var colors = ['progress-bar-success','progress-bar-info','progress-bar-warning','progress-bar-danger'];
+            var colors = ['#5DA5DA','#4D4D4D','#FAA43A','#60BD68','#F17CB0','#B2912F','#B276B2','#DECF3F','#DECF3F'];
             res.render('poll.ejs', {poll: poll, user: req.user, message: req.flash('pollMessage'), colors:colors});
        });
     });
@@ -164,6 +155,12 @@ module.exports = function(app, passport) {
                 });
             }
        })
+    });
+    app.post('/api/isLogged', function(req, res){
+        if (req.user)
+            res.send(true);
+        else
+            res.send(false);
     });
     //logout
     app.get('/logout', function(req, res){
