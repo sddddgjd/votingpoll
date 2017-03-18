@@ -57,9 +57,26 @@ html, body{
 	margin-top:20px;
 }
 #pollContainer{
+	margin-top:50px;
 	padding-left:10%;
 	padding-right:10%;
 }
 #chartWrapper{
 	padding-right:5%;
+}
+.navbar-default{
+	background-color:#3E4E72 !important;
+	border-color:#3E4E72 !important;
+}
+.navbar a{
+	color:white !important;
+}
+.navbar .navbar-header > a:hover{
+    color: #B3BCCF !important;
+}
+.navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+    color: #B3BCCF !important;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white !important;
 }

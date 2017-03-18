@@ -7,7 +7,7 @@ app.controller('AppCtrl', function($scope, $mdDialog) {
     $scope.showAdvanced = function(ev) {
         $mdDialog.show({
             controller: DialogController,
-            templateUrl: 'new.ejs',
+            templateUrl: '../new.ejs',
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true,
